@@ -1,0 +1,94 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+
+{% block contents %}
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Registered Users</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>status</th>
+                                <th>Activate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in registered_users %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.phoneno }}</td>
+                                    <td>{{ user.status }}</td>
+                                    {% if user.status == 'waiting' %}
+                                    <td><a class="btn-link" href="/AdminActiveUsers/?uid={{ user.id }}"
+                                        >Activate</a></td>
+                                    {% else %}
+                                    <td> Activated</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  {% if messages %}
+  <div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Emotion predictions</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Email</th>
+                                <th>Emotion</th>
+                                <!-- <th>Image</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in data %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.emotion }}</td>
+                                    <!-- <td>
+                                        <a href="{{ user.file }}" download>
+                                            <button type="button">Image</button>
+                                        </a>
+                                    </td>                        -->
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

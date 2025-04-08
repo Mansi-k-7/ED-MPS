@@ -1,0 +1,13 @@
+if you want to run project
+open cmd 
+type 
+cd C:\Users\kadar\Documents\Project SE\ED & MPS\ED & MPS
+and enter 
+and next
+Python manage.py runserver
+
+paste the below link in the browser
+ http://127.0.0.1:8000/
+
+To stop the server 
+CTRL+C

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>connect</h2>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-5 d-flex align-items-stretch">
+          <div class="info">
+            <form action="{% url 'commonlogin' %}" method="post" role="form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+              </div><br>
+              <div class="text-center"><button type="submit" class="btn btn-primary rounded-pill" style="background-color: #37517e;">Login</button></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5 d-flex align-items-stretch">
+          <div class="info">
+            <form action="{% url 'Userregister' %}" method="post" role="form">
+              {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" class="form-control" id="username" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" class="form-control" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number</label>
+              <input type="text" class="form-control" name="contact" id="contact" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password" required>
+            </div><br>
+            <div class="text-center"><button type="submit" class="btn btn-primary rounded-pill" style="background-color: #37517e;">Register</button></div>
+          </form>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </section>
+  {% if messages %}
+  <div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endblock %}

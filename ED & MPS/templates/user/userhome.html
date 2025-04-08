@@ -1,0 +1,94 @@
+{% extends 'user/userbase.html' %}
+{% load static %}
+
+{% block contents %}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Emotion-Detection</h2>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+                <form action="{% url 'UploadImageAction' %}" enctype="multipart/form-data" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <p>Upload an image for Image Processing and Machine Learning and detect the results</p>
+                        <div class="col-md-12">
+                            <strong>Select an Image</strong>  <input type="file" name="file"  accept="image/gif, image/jpeg, image/png" required placeholder="Select an Image to Upload"><br/>
+                        </div><br>
+                        <button type="submit" class="btn btn-primary rounded-pill" style="background-color: #37517e;">Detect emotion</button>
+                    </div>
+                </form><br>
+                <form action="{% url 'stop_music' %}" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary rounded-pill" style="background-color: #37517e;">Stop Music</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+                <form action="{% url 'UserLiveCameDetect' %}" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <p>Image Processing and Machine Learning process through the Live Camera</p>
+                        <p>Note: Press Q to quit the live camera</p>
+                        <button type="submit" class="btn btn-primary rounded-pill" style="background-color: #37517e;">Live detect</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+         
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>My predictions</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Email</th>
+                                <th>Emotion</th>
+                                <!-- <th>Image</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in data %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.emotion }}</td>
+                                    <!-- <td>
+                                        <a href="{{ user.file }}" download>
+                                            <button type="button">Image</button>
+                                        </a>
+                                    </td>                        -->
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+
+{% endblock %}
